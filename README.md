@@ -1,142 +1,368 @@
-# customer_behaviour_analysis
-Data analysis project showcasing customer behavior analysis using Python, SQL, Power BI.
+# 🛍️ Customer Shopping Behavior Analytics — End-to-End Data Analytics Project
 
-# Data Analysis Project – End-to-End Analytics Pipeline
+> An end-to-end analytics project analyzing **3,900 customer shopping records** using **PostgreSQL**, **Python**, and **Power BI** — uncovering purchasing patterns, subscription dynamics, category-level revenue performance, and demographic-driven insights to support retail strategy and customer retention decisions.
 
-## Overview
-
-This project demonstrates an end-to-end **data analysis workflow**, covering data loading, exploration, cleaning, SQL analysis, and business-focused visualization. The goal is to extract meaningful insights from raw data and present them through an interactive dashboard and a concise presentation.
-
-The project reflects real-world analytics practices commonly used in data analyst roles.
-
----
-
-## Dataset
-
-* **Source**: Provided dataset (CSV format)
-* **Description**: The dataset contains structured records used to analyze trends, patterns, and key metrics.
-* **Format**: `.csv`
-* **Size**: Medium-sized dataset suitable for exploratory and SQL-based analysis
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white)
+![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![Power BI](https://img.shields.io/badge/PowerBI-F2C811?style=for-the-badge&logo=powerbi&logoColor=black)
+![Jupyter](https://img.shields.io/badge/Jupyter-F37626?style=for-the-badge&logo=jupyter&logoColor=white)
+![Pandas](https://img.shields.io/badge/Pandas-150458?style=for-the-badge&logo=pandas&logoColor=white)
+![Status](https://img.shields.io/badge/Status-Completed-brightgreen?style=for-the-badge)
 
 ---
 
-## Tools & Technologies
+## 📌 Table of Contents
 
-* **Python**: Data loading, EDA, and data cleaning
-
-  * Libraries: Pandas, NumPy
-* **PostgreSQL**: SQL querying and analytical computations
-* **Power BI**: Interactive dashboard creation
-* **Gamma**: Presentation (PPT) generation
-* **Jupyter Notebook**: Development and analysis environment
-
----
-
-## Project Workflow / Steps
-
-### 1. Data Loading
-
-* Imported the dataset into Python using Pandas.
-* Verified schema, data types, and initial structure.
-
-### 2. Exploratory Data Analysis (EDA)
-
-* Analyzed data distribution, missing values, and outliers.
-* Visualized trends and relationships between key variables.
-* Identified data quality issues requiring cleaning.
-
-### 3. Data Cleaning
-
-* Handled missing values using appropriate statistical techniques.
-* Corrected data types and removed inconsistencies.
-* Prepared a clean dataset for downstream analysis.
-
-### 4. SQL Analysis (PostgreSQL)
-
-* Loaded the cleaned dataset into PostgreSQL.
-* Wrote SQL queries to:
-
-  * Aggregate key metrics
-  * Perform group-wise analysis
-  * Extract business insights efficiently
-
-### 5. Dashboard (Power BI)
-
-* Built an interactive Power BI dashboard to visualize:
-
-  * Key performance indicators (KPIs)
-  * Trends and comparisons
-  * Summary insights for stakeholders
-
-### 6. Presentation (Gamma)
-
-* Created a concise presentation highlighting:
-
-  * Problem statement
-  * Methodology
-  * Key insights
-  * Business recommendations
+- [Problem Statement](#-problem-statement)
+- [Business Questions](#-business-questions)
+- [Project Architecture](#-project-architecture--workflow)
+- [Dashboard Preview](#-dashboard-preview)
+- [Dataset Description](#-dataset-description)
+- [Key KPIs](#-key-kpis)
+- [Key Insights](#-key-insights)
+- [SQL Analysis](#-sql-analysis)
+- [Python Processing](#-python-processing)
+- [Tech Stack](#️-tech-stack)
+- [Project Structure](#-project-structure)
+- [How to Use](#-how-to-use)
+- [Author](#-author)
 
 ---
 
-## Dashboard
+## 🎯 Problem Statement
 
-The Power BI dashboard provides:
+Retail businesses collect vast amounts of customer transaction data but often lack the analytical infrastructure to convert it into revenue strategy. Key questions — *who is buying, what they buy, how much they spend, and whether they'll return* — frequently go unanswered.
 
-* Clear KPIs for quick decision-making
-* Interactive filters for deeper analysis
-* Clean, business-oriented visual design
+This project builds a complete analytics pipeline to address that gap: raw shopping data is extracted and queried in **PostgreSQL**, validated and processed in **Python**, and visualized in an interactive **Power BI** dashboard — enabling business stakeholders to make data-driven decisions on subscriptions, category investment, and customer segmentation without requiring technical skills.
 
 ---
 
-## Results & Insights
+## ❓ Business Questions
 
-* Identified meaningful trends and patterns in the data.
-* Converted raw data into actionable insights.
-* Delivered results in both visual (dashboard) and presentation formats for non-technical stakeholders.
+This analysis was structured around 10 targeted business questions:
 
----
-
-## How to Run the Project
-
-1. **Clone the repository**
-
-   ```bash
-   git clone <repository-url>
-   ```
-
-2. **Install required Python libraries**
-
-   ```bash
-   pip install pandas numpy matplotlib seaborn sqlalchemy psycopg2
-   ```
-
-3. **Run the Jupyter Notebook**
-
-   * Open the notebook and execute cells in order.
-
-4. **Set up PostgreSQL**
-
-   * Create a database
-   * Update connection details in the script
-   * Load the cleaned dataset
-
-5. **Open Power BI**
-
-   * Connect to PostgreSQL
-   * Load the provided `.pbix` file or recreate visuals
-
-6. **View the Presentation**
-
-   * Open the Gamma-generated PPT for a summarized walkthrough
+| # | Business Question | Analytical Method |
+|---|---|---|
+| 1 | What is the total revenue generated by male vs. female customers? | SQL `GROUP BY` + `SUM()` |
+| 2 | Which customers used a discount but still spent above average? | SQL subquery with conditional filter |
+| 3 | Which are the top 5 products by average review rating? | SQL `AVG()` + `ORDER BY` |
+| 4 | Does shipping type (Standard vs. Express) affect average spend? | SQL `AVG()` comparison |
+| 5 | Do subscribed customers spend more than non-subscribers? | SQL `GROUP BY` aggregation |
+| 6 | Which 5 products have the highest discount application rate? | SQL `CASE WHEN` + percentage calculation |
+| 7 | What is the distribution of New, Returning, and Loyal customers? | SQL CTE + `CASE WHEN` segmentation |
+| 8 | What are the top 3 products per category? | SQL Window Function `ROW_NUMBER() OVER()` |
+| 9 | Are repeat buyers (>5 purchases) more likely to subscribe? | SQL filter + `GROUP BY` |
+| 10 | What is the revenue contribution by age group? | SQL `GROUP BY` age band |
 
 ---
 
-## Conclusion
+## 🏗️ Project Architecture & Workflow
 
-This project showcases practical skills in **Python, SQL, data visualization, and business storytelling**, making it a strong demonstration of real-world data analysis capabilities.
+```
+┌─────────────────┐     ┌──────────────────┐     ┌─────────────────────┐     ┌──────────────────┐
+│   📄 Raw Data    │────▶│  🐘 PostgreSQL   │────▶│  🐍 Python          │────▶│  📊 Power BI     │
+│   (Excel/CSV)   │     │  SQL Querying    │     │  Jupyter Notebook   │     │  Dashboard       │
+│                 │     │  Data Storage    │     │  pandas / numpy     │     │  Interactive     │
+│  3,900 records  │     │  10 SQL queries  │     │  Cleaning & EDA     │     │  Visualization   │
+│  18 columns     │     │  CTEs, Windows   │     │  Validation         │     │  KPIs + Charts   │
+└─────────────────┘     └──────────────────┘     └─────────────────────┘     └──────────────────┘
+```
+
+**Step-by-step pipeline:**
+
+1. **Ingestion** — Raw CSV (3,900 rows × 18 columns) imported into PostgreSQL as the `customer` table
+2. **SQL Analysis** — 10 business questions answered via structured SQL queries (aggregations, CTEs, window functions)
+3. **Python Validation** — Query outputs verified using `pandas`; data cleaned, null-handled (37 missing review ratings), and enriched with derived columns (age group, customer segment)
+4. **Power BI Visualization** — Cleaned data loaded into Power BI; interactive dashboard built with KPI cards, slicers, and cross-filtering visuals
+5. **Reporting** — Findings documented in a structured PDF analysis report
 
 ---
 
-**Author**: *Arshad Khaja Isak Shaikh*
-**Role Target**: Data Analyst / Business Analyst
+## 📊 Dashboard Preview
+
+![Customer Behavior Dashboard](./images/Dashboard_Screenshot.png)
+
+> **Live Dashboard Controls:**
+> Filter by **Subscription Status** (Yes/No), **Gender** (Male/Female), **Category** (Clothing/Accessories/Footwear/Outerwear), and **Shipping Type** (6 options) — all slicers cross-filter every visual in real-time.
+
+---
+
+## 🗂️ Dataset Description
+
+| Column | Description | Type | Sample |
+|---|---|---|---|
+| `Customer ID` | Unique customer identifier | Integer | 1, 2, 3 |
+| `Age` | Customer age | Integer | 19–70 |
+| `Gender` | Male / Female | Categorical | Male |
+| `Item Purchased` | Specific product name | Categorical | Blouse, Jeans, Jacket |
+| `Category` | Product category | Categorical | Clothing, Accessories |
+| `Purchase Amount (USD)` | Transaction value in USD | Integer | $20–$100 |
+| `Location` | US state of customer | Categorical | Kentucky, Maine |
+| `Size` | Product size | Categorical | S, M, L, XL |
+| `Color` | Product color | Categorical | Gray, Maroon |
+| `Season` | Season of purchase | Categorical | Fall, Spring, Winter, Summer |
+| `Review Rating` | Customer rating (1–5) | Float | 3.1, 4.2 *(37 nulls)* |
+| `Subscription Status` | Active subscription (Yes/No) | Boolean | Yes |
+| `Shipping Type` | Delivery method | Categorical | Express, Standard, Free Shipping |
+| `Discount Applied` | Whether discount was used | Boolean | Yes / No |
+| `Promo Code Used` | Whether promo code applied | Boolean | Yes / No |
+| `Previous Purchases` | Count of prior transactions | Integer | 0–50 |
+| `Payment Method` | Payment instrument | Categorical | PayPal, Credit Card, Cash |
+| `Frequency of Purchases` | Self-reported purchase frequency | Categorical | Weekly, Fortnightly |
+
+**Dataset Summary:**
+- **Rows:** 3,900 | **Columns:** 18 | **Null values:** 37 (Review Rating only)
+- **Date source:** Excel/CSV → PostgreSQL `customer` table
+- **Revenue range:** $20–$100 per transaction | **Total:** $233,081
+
+---
+
+## 📈 Key KPIs
+
+| KPI | Value | Context |
+|---|---|---|
+| 👥 Total Customers | **3,900** | Complete dataset — no duplicates |
+| 💰 Total Revenue | **$233,081** | Sum of all purchase amounts |
+| 🧾 Avg Purchase Amount | **$59.76** | Consistent across gender and shipping type |
+| ⭐ Avg Review Rating | **3.75 / 5** | Moderate satisfaction; 37 ratings missing |
+| 🔁 Subscribed Customers | **1,053 (27%)** | 2,847 (73%) are non-subscribers |
+| 👨 Male Revenue Share | **$157,890 (67.7%)** | Males: 2,652 customers |
+| 👩 Female Revenue Share | **$75,191 (32.3%)** | Females: 1,248 customers |
+| 🏆 Top Category Revenue | **Clothing: $104,264** | 44.7% of total revenue |
+| 🔄 Loyal Customers | **3,116 (79.9%)** | Previous purchases > 10 |
+
+---
+
+## 💡 Key Insights
+
+### 🔴 Subscription & Retention Gap
+
+**1. Only 27% of customers hold an active subscription — yet subscriber spend is nearly identical ($59.49) to non-subscribers ($59.87).** This means the current subscription model is not creating a meaningful spend premium. The untapped 73% non-subscriber base represents the single largest revenue unlock: converting even 10% to subscribers would add ~285 new recurring customers. **Recommendation:** Introduce subscription-exclusive perks (early access, free shipping upgrades) that create spend differentiation, not just loyalty labels.
+
+**2. 79.9% of customers (3,116) qualify as Loyal** (>10 previous purchases), yet 73% are still non-subscribers. This is a critical misalignment — the store has a highly engaged repeat customer base that has not been converted into formal subscription relationships. **Recommendation:** Target the Loyal non-subscriber segment with a personalized re-engagement campaign as the highest-ROI retention investment.
+
+### 🟡 Category & Product Performance
+
+**3. Clothing dominates at $104,264 (44.7% of total revenue) with 1,737 transactions** — nearly 1.4× the revenue of Accessories ($74,200) despite being 1.4× the transaction count. The top 5 individual products by revenue (Blouse, Shirt, Dress, Pants, Jewelry) are all in the $10,000+ band, confirming clothing as the core catalog anchor. **Recommendation:** Prioritize Clothing for seasonal promotions, inventory depth, and upsell pairing with Accessories.
+
+**4. Outerwear underperforms significantly at $18,524 (8.0% of revenue) across just 324 transactions** — the smallest category by both revenue and volume. With an average purchase of $57.17 (lowest of all categories), Outerwear may be priced below customer willingness-to-pay. **Recommendation:** Test a price architecture review for Outerwear with a 10–15% premium tier to improve category margin.
+
+### 🟢 Demographic & Seasonal Insights
+
+**5. Middle-aged customers (35–55) generate the highest revenue at $88,853 (38.1% of total)** across 1,482 transactions — nearly double the Young Adult segment. Yet the Young Adult cohort has the highest average purchase of $60.65, suggesting higher spend-per-visit despite lower overall volume. **Recommendation:** Middle-aged customers warrant retention focus; Young Adults warrant acquisition investment given their per-visit spend premium.
+
+**6. Fall drives the highest seasonal revenue at $60,018** — 7.6% more than the lowest season (Summer at $55,777). The relatively even seasonal distribution (~25% each) indicates no severe demand cliffs, but Fall and Spring together account for 51% of annual revenue. **Recommendation:** Front-load marketing budget to August–September (pre-Fall) and February–March (pre-Spring) for maximum seasonal ROI.
+
+**7. Discount application does not increase average spend** — discounted purchases average $59.28 vs. $60.13 for non-discounted. Discounts are being given without incremental revenue return. **Recommendation:** Audit discount strategy — shift from blanket discounts to conditional ones (e.g., "spend $80 to unlock 15% off") to preserve margin while driving basket size.
+
+---
+
+## 🗄️ SQL Analysis
+
+Full queries are available in [`/sql/customer_shopping_queries.sql`](./sql/customer_shopping_queries.sql). Below are three queries that demonstrate advanced SQL techniques.
+
+### Query 1 — Customer Segmentation with CTE (New / Returning / Loyal)
+
+```sql
+-- Segments customers by purchase history depth using a CTE
+WITH customer_type AS (
+    SELECT customer_id,
+           previous_purchases,
+           CASE
+               WHEN previous_purchases = 1      THEN 'New'
+               WHEN previous_purchases BETWEEN 2 AND 10 THEN 'Returning'
+               ELSE 'Loyal'
+           END AS customer_segment
+    FROM customer
+)
+SELECT customer_segment,
+       COUNT(*) AS "Number of Customers"
+FROM customer_type
+GROUP BY customer_segment;
+```
+**Result:** Loyal: 3,116 | Returning: 701 | New: 83
+**Why it matters:** Reveals that 79.9% of the customer base is deeply engaged — a strong retention foundation that subscription strategy should capitalize on.
+
+---
+
+### Query 2 — Top 3 Products per Category (Window Function)
+
+```sql
+-- Uses ROW_NUMBER() window function to rank products within each category
+WITH item_counts AS (
+    SELECT category,
+           item_purchased,
+           COUNT(customer_id) AS total_orders,
+           ROW_NUMBER() OVER (
+               PARTITION BY category
+               ORDER BY COUNT(customer_id) DESC
+           ) AS item_rank
+    FROM customer
+    GROUP BY category, item_purchased
+)
+SELECT item_rank, category, item_purchased, total_orders
+FROM item_counts
+WHERE item_rank <= 3;
+```
+**Why it matters:** Identifies which specific products carry each category — critical for inventory prioritization and promotional planning. Cannot be achieved with simple `GROUP BY` alone.
+
+---
+
+### Query 3 — Subscription vs. Revenue Comparison
+
+```sql
+-- Compares subscriber and non-subscriber spend behavior
+SELECT subscription_status,
+       COUNT(customer_id)          AS total_customers,
+       ROUND(AVG(purchase_amount), 2) AS avg_spend,
+       ROUND(SUM(purchase_amount), 2) AS total_revenue
+FROM customer
+GROUP BY subscription_status
+ORDER BY total_revenue, avg_spend DESC;
+```
+**Result:** Non-subscribers: 2,847 customers, $170,436 total | Subscribers: 1,053 customers, $62,645 total
+**Why it matters:** Exposes that subscribers generate only 26.9% of total revenue despite the effort to acquire them — the subscription model needs a value-add redesign.
+
+---
+
+## 🐍 Python Processing
+
+Full notebook available in [`/notebooks/Customer_shopping_behaviour.ipynb`](./notebooks/Customer_shopping_behaviour.ipynb)
+
+**Key processing steps performed:**
+
+```python
+import pandas as pd
+import numpy as np
+
+df = pd.read_csv("customer_shopping_behavior.csv")
+
+# 1. Shape and schema validation
+print(df.shape)          # (3900, 18)
+print(df.dtypes)
+print(df.isnull().sum()) # Identified 37 null Review Ratings
+
+# 2. Null handling — Review Rating (37 missing values)
+df['Review Rating'].fillna(df['Review Rating'].median(), inplace=True)
+
+# 3. Derived column — Age Group segmentation
+bins   = [0, 25, 35, 55, 100]
+labels = ['Young Adult', 'Adult', 'Middle-aged', 'Senior']
+df['Age Group'] = pd.cut(df['Age'], bins=bins, labels=labels)
+
+# 4. Customer Segment classification
+df['Customer Segment'] = df['Previous Purchases'].apply(
+    lambda x: 'New' if x == 1 else ('Returning' if x <= 10 else 'Loyal')
+)
+
+# 5. Revenue by category — cross-validation with SQL output
+print(df.groupby('Category')['Purchase Amount (USD)'].sum())
+# Clothing: 104264 | Accessories: 74200 | Footwear: 36093 | Outerwear: 18524
+
+# 6. Subscription analysis — validates SQL Query 5
+print(df.groupby('Subscription Status')['Purchase Amount (USD)'].agg(['mean','sum','count']))
+```
+
+**Python's role in this project:** SQL handles aggregation and segmentation logic; Python validates those outputs independently, handles the 37 null Review Ratings that SQL couldn't impute cleanly, and enriches the dataset with Age Group and Customer Segment columns before Power BI ingestion.
+
+---
+
+## 🛠️ Tech Stack
+
+| Tool | Version | Purpose |
+|---|---|---|
+| **PostgreSQL** | 14+ | Data storage, SQL querying, business question analysis |
+| **Python** | 3.9+ | Data cleaning, validation, EDA, derived feature engineering |
+| **pandas** | 1.5+ | DataFrame operations, null handling, aggregation validation |
+| **numpy** | 1.23+ | Numerical operations and array-based transformations |
+| **Jupyter Notebook** | 6.5+ | Interactive Python development and documentation |
+| **Microsoft Power BI Desktop** | Latest | Interactive dashboard, KPI cards, slicer-driven filtering |
+| **Excel / CSV** | — | Raw data source (3,900 records × 18 columns) |
+
+---
+
+## 📁 Project Structure
+
+```
+customer-behavior-analytics/
+│
+├── 📄 README.md                              ← You are here
+│
+├── 📂 images/
+│   └── Dashboard_Screenshot.png             ← Dashboard preview (embedded above)
+│
+├── 📂 sql/
+│   ├── customer_shopping_queries.sql         ← All 10 SQL queries with comments
+│   └── README_sql.md                         ← Query index and descriptions
+│
+├── 📂 notebooks/
+│   └── Customer_shopping_behaviour.ipynb    ← Data cleaning, EDA, validation
+│
+├── 📂 dashboard/
+│   └── customer_shopping_behavior_Dashboard.pbix  ← Power BI file
+│
+├── 📂 reports/
+│   └── Analysis_Report.pdf                  ← Full business analysis report
+│
+└── 📂 data/
+    └── customer_shopping_behavior.csv        ← Raw dataset (3,900 rows × 18 cols)
+```
+
+---
+
+## 🚀 How to Use
+
+### For Recruiters & Hiring Managers
+Start with the **dashboard screenshot** above, then explore deeper:
+
+1. 📊 **Power BI Dashboard** → Download `dashboard/customer_shopping_behavior_Dashboard.pbix` → Open in [Power BI Desktop](https://powerbi.microsoft.com/desktop/) (free)
+2. 📋 **Full Report** → Read `reports/Analysis_Report.pdf` for methodology and written insights
+3. 🗄️ **SQL Queries** → Browse `sql/customer_shopping_queries.sql` to review analytical SQL
+4. 🐍 **Python Notebook** → Open `notebooks/Customer_shopping_behaviour.ipynb` in Jupyter or VS Code
+
+### For Technical Review
+
+```bash
+# 1. Clone the repository
+git clone https://github.com/YOUR_USERNAME/customer-behavior-analytics.git
+cd customer-behavior-analytics
+
+# 2. Set up Python environment
+pip install pandas numpy jupyter
+
+# 3. Launch the notebook
+jupyter notebook notebooks/Customer_shopping_behaviour.ipynb
+
+# 4. Load data into PostgreSQL (optional)
+psql -U your_username -d your_database \
+  -c "\copy customer FROM 'data/customer_shopping_behavior.csv' CSV HEADER"
+
+# 5. Run SQL queries
+psql -U your_username -d your_database \
+  -f sql/customer_shopping_queries.sql
+
+# 6. Open Power BI file
+# File → Open → dashboard/customer_shopping_behavior_Dashboard.pbix
+```
+
+---
+
+## 📄 License
+
+This project is licensed under the MIT License — see [LICENSE](LICENSE) for details.
+
+---
+
+## 👤 Author
+
+**ARSHAD K I SHAIKH**
+*Data Analyst | SQL · Python · Power BI · PostgreSQL*
+
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-blue?style=for-the-badge&logo=linkedin)](https://linkedin.com/in/arshadkishaikh/)
+[![GitHub](https://img.shields.io/badge/GitHub-Follow-black?style=for-the-badge&logo=github)](https://github.com/Arshadkishaikh)
+
+---
+
+> 💼 *This project demonstrates a complete end-to-end data analytics workflow: SQL querying in PostgreSQL, data validation and feature engineering in Python, and business-insight-driven interactive dashboard design in Power BI — applied to a real 3,900-record retail dataset.*
+
+> ⭐ If this project helped or inspired you, please give it a star!
