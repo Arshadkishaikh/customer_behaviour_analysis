@@ -5,7 +5,7 @@ Queries were executed against a **PostgreSQL** database with a single `customer`
 
 ---
 
-## Query Index
+## **Query Index**
 
 | # | File Reference | Business Question | SQL Techniques Used |
 |---|---|---|---|
