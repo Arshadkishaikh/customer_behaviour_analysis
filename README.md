@@ -125,11 +125,6 @@ This analysis was structured around 10 targeted business questions:
 | 💰 Total Revenue | **$233,081** | Sum of all purchase amounts |
 | 🧾 Avg Purchase Amount | **$59.76** | Consistent across gender and shipping type |
 | ⭐ Avg Review Rating | **3.75 / 5** | Moderate satisfaction; 37 ratings missing |
-| 🔁 Subscribed Customers | **1,053 (27%)** | 2,847 (73%) are non-subscribers |
-| 👨 Male Revenue Share | **$157,890 (67.7%)** | Males: 2,652 customers |
-| 👩 Female Revenue Share | **$75,191 (32.3%)** | Females: 1,248 customers |
-| 🏆 Top Category Revenue | **Clothing: $104,264** | 44.7% of total revenue |
-| 🔄 Loyal Customers | **3,116 (79.9%)** | Previous purchases > 10 |
 
 ---
 
