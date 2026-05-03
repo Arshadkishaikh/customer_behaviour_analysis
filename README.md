@@ -80,7 +80,7 @@ This analysis was structured around 10 targeted business questions:
 
 ## 📊 Dashboard Preview
 
-![Customer Behavior Dashboard](./images/Dashboard_Screenshot.png)
+![Customer Behavior Dashboard](./images/customer_shopping_behavior_Dashboard.png)
 
 > **Live Dashboard Controls:**
 > Filter by **Subscription Status** (Yes/No), **Gender** (Male/Female), **Category** (Clothing/Accessories/Footwear/Outerwear), and **Shipping Type** (6 options) — all slicers cross-filter every visual in real-time.
